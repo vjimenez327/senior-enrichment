@@ -1,12 +1,15 @@
 /* combineReducers is not currently used, but eventually should be for modular code :D */
-import { combineReducers } from 'redux'
+import { combineReducers, createStore, applyMiddleware } from 'redux';
+import loggingMiddleware from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+//all reducers imported below
+import campuses from './campuses';
 
-const initialState = {}
 
-const rootReducer = function(state = initialState, action) {
-  switch(action.type) {
-    default: return state
-  }
-};
+const reducer = combineReducers({ campuses })
 
-export default rootReducer
+const store = createStore(reducer)
+
+export default store
+
+export * from './campuses'
