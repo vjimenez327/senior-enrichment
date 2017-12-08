@@ -1,22 +1,18 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios';
+import { fetchCampuses } from '../reducers/campuses';
 
-function AllCampuses (props) {
+ class AllCampuses extends Component {
 
-    const mapStateToProps = function (state) {
-        return {
-            campuses: state.campuses
-        }
+    componentDidMount() {
+        this.props.loadCampuses();
     }
-
-    const { campuses } = props;
-
-    return (
+    
+    render () {
+        return (
         <ul>
-            {
-                campuses.map(campus => {
+            {this.props.campuses.map(campus => {
                     return (
                         <li key={campus.id}>
                             <NavLink to={`/campus_route/${campus.id}`}>
@@ -27,8 +23,25 @@ function AllCampuses (props) {
                 })
             }
         </ul>
-    )
+        )
+    }   
 
-
-    export default withRouter(connect(mapStateToProps)(AllCampuses))
+ 
 }
+
+const mapStateToProps = function (state) {
+    return {
+        campuses: state.campuses
+    }
+}
+
+const mapDispatchToProps = function (dispatch){
+    return {
+        loadCampuses: function(){
+            dispatch(fetchCampuses())
+        }
+    }
+}
+
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllCampuses))

@@ -1,30 +1,41 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import { withRouter, NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchStudents } from '../reducers/students';
 
-export default class AllStudents extends Component {
-	constructor(props){
-		super(props);
-
-		this.state = {
-			students: []
-		}
-	}
+ class AllStudents extends Component {
 
 	componentDidMount() {
-		axios.get('api/student_route')
-		.then(res => res.data)
-		.then( students => this.setState({students}))
-		.catch(err => console.log(err))
+		this.props.loadStudents();
 	}
 
     render(){
-		console.log('you reached the students', this.state.students);
         return (
-			<div>
-				<ul>
-					{this.state.students.map(student => <li key = {student.id}> {student.firstName} </li>)}
-				</ul>
-			</div>
+			<ul>
+				{this.props.students.map(student => { 
+					return ( 
+						<li key = {student.id}>
+							<NavLink to={`/student_route/${student.id}`}>
+								<span>{student.firstName} </span>
+							</NavLink>
+						</li>
+					)
+				})
+			}
+			</ul>
         )
     }
+} 
+
+const mapStateToProps = (storeState) => {
+	return {
+		students: storeState.students
+	}
 }
+const mapDispatchToProps = (dispatch) => {
+	return {
+		loadStudents: () => dispatch(fetchStudents())
+	}
+} 
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AllStudents))
