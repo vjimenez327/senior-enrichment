@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Icon} from 'semantic-ui-react';
-import {postStudent, writeStudentFirstName, writeStudentLastName, writeStudentGPA, writeStudentEmail} from '../reducers/';
+import {postStudent} from '../reducers/';
 import { connect } from 'react-redux';
 
 function newStudentEntry(props) {
@@ -9,7 +9,7 @@ function newStudentEntry(props) {
 
 		return (
 			<div>
-				<h2>THIS IS THE NEW STUDENT</h2>
+			<h2>ADD A STUDENT BELOW!</h2>
 				<form onSubmit={handleSubmit}>
 					First Name:
 					<input
@@ -44,9 +44,10 @@ function newStudentEntry(props) {
 					<option value={-1}> Select A Campus </option>
 						{campuses.map(campus => <option key={campus.id} value={campus.id}>{campus.name}</option>)}
 					</select>
+
 					<div>
 						<button type="submit" className="ui icon button">
-							<i className="add user icon">Add</i>
+							<i className="add user icon">Add Student</i>
 						</button>
 					</div>
 				</form>
@@ -58,12 +59,7 @@ function newStudentEntry(props) {
 
 const mapStateToProps = function (state){
 	return {
-		studentFirstName: state.newStudentEntry.firstName,
-		studentLastName: state.newStudentEntry.lastName,
-		studentEmail: state.newStudentEntry.email,
-		studentGPA: state.newStudentEntry.gpa,
 		campuses: state.campuses
-
 	};
 };
 
@@ -79,7 +75,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 			const gpa = e.target.gpa.value;
 			const campusId = e.target.campusId.value;
 
-
+			dispatch(postStudent({ firstName, lastName, email, gpa, campusId}, ownProps.history));
 
 
 		}

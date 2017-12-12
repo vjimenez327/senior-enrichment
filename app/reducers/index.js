@@ -5,14 +5,12 @@ import { combineReducers } from 'redux';
 //all reducers imported below
 import campuses from './campuses';
 import students from './students';
-import newStudentEntry from './newStudentEntry';
 
 
-const reducer = combineReducers({ campuses, students, newStudentEntry });
+const reducer = combineReducers({ campuses, students });
 
 
 export default reducer;
 
 export * from './campuses';
 export * from './students';
-export * from './newStudentEntry';

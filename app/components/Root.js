@@ -23,9 +23,10 @@ import EditCampus from './EditCampus';
     render() {
       return (
         <div>
-          <center><h1>Welcome to School!</h1></center>
+          <center><h1>Welcome to  Margaret Hamilton Interplanetary Academy of JavaScript!</h1></center>
           <Navbar />
 
+          
             <Switch>
     
               <Route exact path="/campuses" component={AllCampuses} />

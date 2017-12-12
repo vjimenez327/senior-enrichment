@@ -1,9 +1,6 @@
-import React, {Component} from 'react';
-import {Button, Icon} from 'semantic-ui-react';
+import React from 'react';
 import {updateCampus} from '../reducers/';
 import { connect } from 'react-redux';
-
-
 
 function EditCampus (props) {
 
@@ -54,10 +51,6 @@ function EditCampus (props) {
 const mapStateToProps = function (state){
 	return {
         students: state.students,
-		// studentFirstName: state.newStudentEntry.firstName,
-		// studentLastName: state.newStudentEntry.lastName,
-		// studentEmail: state.newStudentEntry.email,
-		// studentGPA: state.newStudentEntry.gpa,
 		campuses: state.campuses
 
 	};

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
 
@@ -9,6 +9,8 @@ function SingleStudent (props){
     const foundStudent = props.students.find(student => student.id === currentStudentId);
 
     const foundCampus = props.campuses.find(campus => campus.id === foundStudent.campusId);
+
+    console.log('this is the foundCampus', foundCampus)
 
 	const campusId = foundCampus.id;
 

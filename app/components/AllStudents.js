@@ -1,9 +1,6 @@
-import React, {Component} from 'react';
-import { withRouter, NavLink, Link } from 'react-router-dom';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
-import {Button, Icon} from 'semantic-ui-react';
-import NewStudent from './NewStudent';
-import EditStudent from './EditStudent';
 import { deleteStudent } from '../reducers/index';
 
  function AllStudents (props){
@@ -33,15 +30,15 @@ import { deleteStudent } from '../reducers/index';
 							</td>
 							<td>
 							<NavLink to={`/editStudent/${student.id}`}>
-							<button type="submit" className="ui icon button">
-								<i className="edit icon">Edit Student</i>
+							<button type="submit" className="btn btn-secondary">
+							Edit Student
 							</button>
 							</NavLink>
 							</td>
 
 							<td>
-							<button type="submit" className="ui icon button" onClick ={ () => handleDelete(student.id)}>
-							<i className="user delete icon">Delete Student</i>
+							<button type="submit" className="btn btn-secondary" onClick ={ () => handleDelete(student.id)}>
+							Delete Student
 							</button>
 							</td>
 						

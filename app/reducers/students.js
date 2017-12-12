@@ -47,20 +47,21 @@ export function postStudent(studentInfo, history) {
     };
  }
 
- export function updateStudent(studentInfoToUpdate, studentId){
+ export function updateStudent(studentInfoToUpdate, studentId, history){
      return function thunk (dispatch) {
          return axios.put('/api/student_route/' + studentId, studentInfoToUpdate)
                 .then(res => res.data)
                 .then(updatedInfo => {
                     dispatch(editStudent(updatedInfo));
+                    history.push(`/students/`);
                 })
                 .catch(err => console.log(err));
+                
      };
  }
 
  export function deleteStudent(studentId){
      return function thunk(dispatch) {
-         console.log('api/student_route/' + studentId);
         return axios.delete('api/student_route/' + studentId)
                     .then(res => {
                         dispatch(removeStudent(studentId));

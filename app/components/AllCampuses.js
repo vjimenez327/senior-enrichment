@@ -1,7 +1,6 @@
-import React, {Component} from 'react';
-import { withRouter, NavLink } from 'react-router-dom'
+import React from 'react';
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { Button, Icon } from 'semantic-ui-react';
 import { deleteCampus } from '../reducers/index';
 
 
@@ -16,6 +15,7 @@ import { deleteCampus } from '../reducers/index';
         <thead>
         <tr>
             <th scope="col">Campus Name</th>
+            <th scope="col">Campus IMG</th>
             <th scope="col">Edit</th>
             <th scope="col">Delete</th>
         </tr>
@@ -32,17 +32,21 @@ import { deleteCampus } from '../reducers/index';
                              </NavLink>
                              </td>
 
+                             <td>
+                             <img src={campus.imageUrl} />
+                             </td>
+
                             <td>
                             <NavLink to={`/editCampus/${campus.id}`}>
 							<button type="submit" className="btn btn-secondary">
-								<i className="edit icon">Edit Campus</i>
+								Edit Campus
 							</button>
                             </NavLink>
                             </td>
                             
                             <td>
                             <button type="submit" className="btn btn-secondary" onClick ={ () => handleDelete(campus.id)}>
-							<i className="delete icon">Delete Campus</i>
+							Delete Campus
                             </button>
                             </td>
                             

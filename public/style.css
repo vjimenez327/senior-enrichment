@@ -2,14 +2,14 @@ body {
     background-image: url('./images/space.png');
     font-family: 'Amatic SC', cursive;
     color: white;
-	font-size: 170%;
+	font-size: 150%;
     font-weight: bold;
     vertical-align: middle;
 }
 
 
 h1 {
-    font-size: 200%;
+    font-size: 180%;
     font-weight: bold;
     display: inline;
 }
@@ -22,7 +22,7 @@ a {
 img {
 
     height: 100px;
-    width:  150px;
+    width:  120px;
 }
 
 .listedStudents {

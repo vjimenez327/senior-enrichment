@@ -17,7 +17,6 @@ const {handleSubmit, name, imageUrl, description}  = props;
                     type="text"
                     placeholder="Enter Campus Name"
                     name="campusName"
-                    // onChange={handleFirstNameChange}
                     value={name}
                 />
                 Image URL:
@@ -25,7 +24,6 @@ const {handleSubmit, name, imageUrl, description}  = props;
                     type="text"
                     placeholder="Enter IMG URL"
                     name="imageUrl"
-                    // onChange={handleLastNameChange}
                     value={imageUrl}
                 />
                 Description:
@@ -33,7 +31,6 @@ const {handleSubmit, name, imageUrl, description}  = props;
                     type="text"
                     placeholder="Description"
                     name="description"
-                    // onChange={handleEmailChange}
                     value={description}
                 />
              
@@ -46,15 +43,6 @@ const {handleSubmit, name, imageUrl, description}  = props;
         </div>
     );
 }
-
-
-const mapStateToProps = function (state){
-	return {
-		// name: state.campuses.name,
-		// imageUrl: state.campuses.url,
-		// description: state.campuses.description
-	};
-};
 
 const mapDispatchToProps = function (dispatch, ownProps) {
     
@@ -71,6 +59,4 @@ const mapDispatchToProps = function (dispatch, ownProps) {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewCampus);
-
-
+export default connect(null, mapDispatchToProps)(NewCampus);

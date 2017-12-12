@@ -34,13 +34,11 @@ export function fetchCampuses(){
 }
 
 export function postCampus(campusInfo, history) {
-    console.log("Entering the CAMP THUNK", campusInfo);
     return function thunk (dispatch) {
         return axios.post('api/campus_route', campusInfo)
                 .then(res => res.data)
                 .then(newCampusInfo => {
                     dispatch(addCampus(newCampusInfo))
-                    console.log("In the dispatch", newCampusInfo);
                     history.push(`/campuses/${newCampusInfo.id}`);
                 })
                 .catch(err => console.log(err));
@@ -61,7 +59,6 @@ export function postCampus(campusInfo, history) {
 
  export function deleteCampus(campusId){
      return function thunk(dispatch) {
-         console.log('api/campus_route/' + campusId);
         return axios.delete('/api/campus_route/' + campusId)
                     .then(res => {
                         dispatch(removeCampus(campusId));

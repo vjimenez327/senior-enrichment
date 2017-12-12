@@ -43,10 +43,8 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
-    console.log("ENTERING THE ROUTE", req.student);
     req.student.destroy()
     .then((response) => {
-        console.log("EXITING ROUTE", response)
         res.sendStatus(202)})
     .catch(next)
 })

@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-import {Button, Icon} from 'semantic-ui-react';
+import React from 'react';
 import {updateStudent} from '../reducers/';
 import { connect } from 'react-redux';
 
@@ -7,27 +6,25 @@ import { connect } from 'react-redux';
 
 function EditStudent (props) {
 
-    const {handleSubmit,  studentFirstName, studentLastName, studentEmail, studentGPA, campuses, handleFirstNameChange, handleLastNameChange, handleEmailChange, handleGPAChange, students} = props;
+    const {handleSubmit,  studentFirstName, studentLastName, studentEmail, studentGPA, campuses, students} = props;
     
     
     const currentStudentId = Number(props.match.params.studentId);
 
 	const foundStudent = students && students.find(student => student.id === currentStudentId);
 
-    
 	const foundCampus = campuses.find(campus => campus.id === foundStudent.campusId);
 	
    
 		return (
 			<div>
-				<h2>TRYING TO EDIT A STUDENT</h2>
+				<h2>EDIT A STUDENT BELOW</h2>
 				<form onSubmit={handleSubmit}>
 					First Name:
 					<input
 						type="text"
 						placeholder="Enter Student First Name"
 						name="studentFirstName"
-						onChange={handleFirstNameChange}
 						value={studentFirstName}
 					/>
 					Last Name:
@@ -35,7 +32,6 @@ function EditStudent (props) {
 						type="text"
 						placeholder="Enter Student Last Name"
 						name="studentLastName"
-						onChange={handleLastNameChange}
 						value={studentLastName}
 					/>
 					Email:
@@ -43,7 +39,6 @@ function EditStudent (props) {
 						type="text"
 						placeholder="Enter updated email"
 						name="email"
-						onChange={handleEmailChange}
 						value={studentEmail}
 					/>
 					GPA:
@@ -51,7 +46,6 @@ function EditStudent (props) {
 						type="text"
 						placeholder="Enter Updated GPA"
 						name="gpa"
-						onChange={handleGPAChange}
 						value={studentGPA}
 					/>
 					Campus:
@@ -73,12 +67,7 @@ function EditStudent (props) {
 const mapStateToProps = function (state){
 	return {
         students: state.students,
-		// studentFirstName: state.newStudentEntry.firstName,
-		// studentLastName: state.newStudentEntry.lastName,
-		// studentEmail: state.newStudentEntry.email,
-		// studentGPA: state.newStudentEntry.gpa,
 		campuses: state.campuses
-
 	};
 };
 
@@ -94,7 +83,7 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             const campusId = e.target.campusId.value;
             const studentId = ownProps.match.params.studentId;
         
-			dispatch(updateStudent({ firstName, lastName, email, gpa, campusId}, studentId));
+			dispatch(updateStudent({ firstName, lastName, email, gpa, campusId}, studentId, ownProps.history));
 
 		}
 	};
