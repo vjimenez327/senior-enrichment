@@ -1,145 +1,54 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import AllStudents from './AllStudents';
 import AllCampuses from './AllCampuses';
-// import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
+import SingleCampus from './SingleCampus';
+import SingleStudent from './SingleStudent';
+import { fetchCampuses } from '../reducers/campuses';
+import { fetchStudents } from '../reducers/students';
+import NewStudent from './NewStudent';
+import NewCampus from './NewCampus';
+import EditStudent from './EditStudent';
+import EditCampus from './EditCampus';
 
-/* The code below does NOT relate to your project.
-   This code is just a nice BIG example of how you can make a component.
-   Also it is HILARIOUS :D Have fun!
- */
+ export class Root extends Component {
 
- const Root = (props) => {
-	console.log('this is the root file');
-    return (
-      <div>
-        <Navbar />
+  componentDidMount() {
+    this.props.loadStudents();
+    this.props.loadCampuses();
+  }
+  
+    render() {
+      return (
+        <div>
+          <center><h1>Welcome to School!</h1></center>
+          <Navbar />
 
-        <Switch>
-          <Route path='/campus_route' component={AllCampuses} />
-          <Route path='/student_route' component={AllStudents} />
-        </Switch>
-      </div>
-    )
+            <Switch>
+    
+              <Route exact path="/campuses" component={AllCampuses} />
+              <Route path="/campuses/:campusId" component={SingleCampus} />
+              <Route exact path="/newCampus" component={NewCampus} />           
+              <Route path="/editCampus/:campusId" component={EditCampus} />   
+            
+              <Route exact path="/newStudent" component={NewStudent} />
+              <Route path="/editStudent/:studentId" component={EditStudent} />
+              <Route exact path="/students" component={AllStudents} />
+              <Route path="/students/:studentId" component={SingleStudent} />
+            </Switch>
+
+        </div>
+    );}
+
 }
 
+const mapDispatchToProps = (dispatch) => {
+	return {
+    loadStudents: () => dispatch(fetchStudents()),
+    loadCampuses: () => dispatch(fetchCampuses())
+	};
+};
 
-export default Root;
-
-// <main>
-// 	<Switch>
-// 		<Route path="/student_route" component = {AllStudents} />
-// 		<Route />
-// 		<Redirect />
-// 	</Switch>
-// </main>
-
-// const FixedMenuLayout = () => (
-//   <div>
-//     <Menu fixed='top' inverted>
-//       <Container>
-//         <Menu.Item as='a' header>
-//           <Image
-//             size='mini'
-//             src='/logo.png'
-//             style={{ marginRight: '1.5em' }}
-//           />
-//           Project Name
-//         </Menu.Item>
-//         <Menu.Item as='a'>Home</Menu.Item>
-
-//         <Dropdown item simple text='Dropdown'>
-//           <Dropdown.Menu>
-//             <Dropdown.Item>List Item</Dropdown.Item>
-//             <Dropdown.Item>List Item</Dropdown.Item>
-//             <Dropdown.Divider />
-//             <Dropdown.Header>Header Item</Dropdown.Header>
-//             <Dropdown.Item>
-//               <i className='dropdown icon' />
-//               <span className='text'>Submenu</span>
-//               <Dropdown.Menu>
-//                 <Dropdown.Item>List Item</Dropdown.Item>
-//                 <Dropdown.Item>List Item</Dropdown.Item>
-//               </Dropdown.Menu>
-//             </Dropdown.Item>
-//             <Dropdown.Item>List Item</Dropdown.Item>
-//           </Dropdown.Menu>
-//         </Dropdown>
-//       </Container>
-//     </Menu>
-
-//     <Container text style={{ marginTop: '7em' }}>
-//       <Header as='h1'>Semantic UI React Fixed Template</Header>
-//       <p>This is a basic fixed menu template using fixed size containers.</p>
-//       <p>A text container is used for the main container, which is useful for single column layouts.</p>
-
-//       <Image src='/assets/images/wireframe/media-paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//       <Image src='/assets/images/wireframe/paragraph.png' style={{ marginTop: '2em' }} />
-//     </Container>
-
-//     <Segment
-//       inverted
-//       vertical
-//       style={{ margin: '5em 0em 0em', padding: '5em 0em' }}
-//     >
-//       <Container textAlign='center'>
-//         <Grid divided inverted stackable>
-//           <Grid.Row>
-//             <Grid.Column width={3}>
-//               <Header inverted as='h4' content='Group 1' />
-//               <List link inverted>
-//                 <List.Item as='a'>Link One</List.Item>
-//                 <List.Item as='a'>Link Two</List.Item>
-//                 <List.Item as='a'>Link Three</List.Item>
-//                 <List.Item as='a'>Link Four</List.Item>
-//               </List>
-//             </Grid.Column>
-//             <Grid.Column width={3}>
-//               <Header inverted as='h4' content='Group 2' />
-//               <List link inverted>
-//                 <List.Item as='a'>Link One</List.Item>
-//                 <List.Item as='a'>Link Two</List.Item>
-//                 <List.Item as='a'>Link Three</List.Item>
-//                 <List.Item as='a'>Link Four</List.Item>
-//               </List>
-//             </Grid.Column>
-//             <Grid.Column width={3}>
-//               <Header inverted as='h4' content='Group 3' />
-//               <List link inverted>
-//                 <List.Item as='a'>Link One</List.Item>
-//                 <List.Item as='a'>Link Two</List.Item>
-//                 <List.Item as='a'>Link Three</List.Item>
-//                 <List.Item as='a'>Link Four</List.Item>
-//               </List>
-//             </Grid.Column>
-//             <Grid.Column width={3}>
-//               <Header inverted as='h4' content='Footer Header' />
-//               <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
-//             </Grid.Column>
-//           </Grid.Row>
-//         </Grid>
-
-//         <Divider inverted section />
-//         <Image
-//           centered
-//           size='mini'
-//           src='/logo.png'
-//         />
-//         <List horizontal inverted divided link>
-//           <List.Item as='a' href='#'>Site Map</List.Item>
-//           <List.Item as='a' href='#'>Contact Us</List.Item>
-//           <List.Item as='a' href='#'>Terms and Conditions</List.Item>
-//           <List.Item as='a' href='#'>Privacy Policy</List.Item>
-//         </List>
-//       </Container>
-//     </Segment>
-//   </div>
-// )
-
-// export default FixedMenuLayout
+export default withRouter(connect(null, mapDispatchToProps)(Root));

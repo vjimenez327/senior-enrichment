@@ -20,8 +20,8 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.use('/api', require('./api')); // include our routes!
 
 app.get('*', (req, res) => {
-  res.send("Can't find the route! Maybe it was a typo!");
-}); // Send index.html for any other requests
+  res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 //error handling middleware
 app.use((err, req, res, next) => {

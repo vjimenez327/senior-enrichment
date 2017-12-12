@@ -45,7 +45,7 @@ If you feel ready, start by incorporating React-Router, Redux and React-Redux (w
 #### See Wireframes folder for visual
 
 - Navigation: as a user I...
-  * will land on **Home** by default
+  * will land on **Home** by default 
   * can navigate to **Campuses** from **Home**
   * can navigate to **Students** from **Home**
   * can navigate to view a **Single Campus** from **Campuses**

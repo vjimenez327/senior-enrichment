@@ -5,20 +5,19 @@ const Student = db.define('students', {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
-    validation:{
+    validation: {
       notEmpty: true
     }
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validation:{
+    validation: {
       notEmpty: true
     }
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: true,
     validate: {
       isEmail: true,
       notEmpty: true

@@ -1,0 +1,30 @@
+body {
+    background-image: url('./images/space.png');
+    font-family: 'Amatic SC', cursive;
+    color: white;
+	font-size: 170%;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+
+h1 {
+    font-size: 200%;
+    font-weight: bold;
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+img {
+
+    height: 100px;
+    width:  150px;
+}
+
+.listedStudents {
+    display: block;
+}

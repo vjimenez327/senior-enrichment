@@ -14,7 +14,7 @@ const Campus = db.define('campuses', {
         defaultValue: 'https://goo.gl/4rZrVx'
     },
     description: {
-        type: Sequelize.TEXT('long')
+        type: Sequelize.TEXT
     }
 
 });
